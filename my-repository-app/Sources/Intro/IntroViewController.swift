@@ -10,12 +10,22 @@ import UIKit
 
 final class IntroViewController: UIViewController {
     
-   
+    private lazy var introView: IntroView = {
+        let introView = IntroView()
+        return introView
+    }()
+    
+ 
+    // MARK: - Life Cycles
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .blue
         
     }
     
+    override func loadView() {
+        self.view = introView
+    }
+    
+    func changeText() {
+        
+    }
 }
