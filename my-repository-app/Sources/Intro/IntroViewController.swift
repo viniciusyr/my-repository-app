@@ -10,33 +10,22 @@ import UIKit
 
 final class IntroViewController: UIViewController {
     
-    private var customView: IntroView? = nil
+    private lazy var introView: IntroView = {
+        let introView = IntroView()
+        return introView
+    }()
     
-    @objc func tappedSkptButton(sender: UIButton){
-        print("Test button")
-    }
-    
+ 
+    // MARK: - Life Cycles
     override func viewDidLoad() {
-        super.viewDidLoad()
         
     }
     
     override func loadView() {
-        view = IntroView()
-        customView = view as? IntroView
+        self.view = introView
     }
     
-
-    
-    
-//    private func configContraints(){
-//        NSLayoutConstraint.activate([
-//            self.skipButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-//            self.skipButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-//            self.skipButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-//            self.skipButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
-//
-//        ])
-//    }
-    
+    func changeText() {
+        
+    }
 }

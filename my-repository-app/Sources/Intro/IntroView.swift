@@ -17,7 +17,7 @@ final class IntroView: UIView {
         skipButton.translatesAutoresizingMaskIntoConstraints = false
         skipButton.setTitle(Strings.TITLE_INTROBUTTON, for: .normal)
         skipButton.titleLabel?.font = UIFont.systemFont(ofSize: 25)
-        skipButton.addTarget(self, action: #selector(IntroViewController.tappedSkptButton(sender:)), for: .touchUpInside)
+        skipButton.addTarget(self, action: #selector(tappedSkptButton(sender:)), for: .touchUpInside)
         return skipButton
     }()
     
@@ -33,48 +33,48 @@ final class IntroView: UIView {
         return introLabel
     }()
     
+    //MARK: - Objs
+    @objc func tappedSkptButton(sender: UIButton){
+        introLabel.text = Strings.TITLE_INTROTEXT2
+        print("Test button")
+    }
+    
     // MARK: Initializations
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
-        addSubViews()
-        constrainLabel()
-        constrainButton()
+        setupViewCode()
+       
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func addSubViews(){
-        addSubview(skipButton)
-        addSubview(introLabel)
+}
+
+// MARK: Extensions
+extension IntroView: Viewcode {
+    func buildHierarchy() {
+        self.addSubview(self.introLabel)
+        self.addSubview(self.skipButton)
     }
     
-    private func constrainLabel() {
-        let constrain = [
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            self.skipButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            self.skipButton.topAnchor.constraint(equalTo: introLabel.bottomAnchor, constant: 12),
+            
             self.introLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
                         self.introLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
                         self.introLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
                         self.introLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-        
-        ]
-        constrain.forEach { (item) in
-            item.isActive = true
-        }
-        
+        ])
     }
     
-    private func constrainButton() {
-        let constraint = [
-            self.skipButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            self.skipButton.topAnchor.constraint(equalTo: introLabel.bottomAnchor, constant: 12),
-                   
-        ]
-        
-        constraint.forEach { (item) in
-            item.isActive = true
-        }
+    func setupExtraConfiguration() {
+        self.backgroundColor = .white
     }
+    
+    
 }
