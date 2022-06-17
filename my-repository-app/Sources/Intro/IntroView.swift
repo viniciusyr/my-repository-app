@@ -35,8 +35,9 @@ final class IntroView: UIView {
     
     //MARK: - Objs
     @objc func tappedSkptButton(sender: UIButton){
-        introLabel.text = Strings.TITLE_INTROTEXT2
-        print("Test button")
+        var click = 0
+        click += 1
+        print(click)
     }
     
     // MARK: Initializations

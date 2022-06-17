@@ -9,9 +9,6 @@ import Foundation
 
 class Introductions: Strings {
     
-    let strings: String
+    let strings = String.self()
     
-    override init() {
-        strings = Strings
-    }
 }
